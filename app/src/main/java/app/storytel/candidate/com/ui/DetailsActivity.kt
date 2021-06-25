@@ -43,7 +43,7 @@ class DetailsActivity : AppCompatActivity(), PostDetailContract.View {
         setContentView(vm.root)
 
         setSupportActionBar(vm.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Get extras
         mPost = intent.extras?.getParcelable(ARGS_POST)

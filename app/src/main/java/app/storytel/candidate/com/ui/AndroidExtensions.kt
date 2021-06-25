@@ -1,15 +1,16 @@
 package app.storytel.candidate.com.ui
 
 import android.content.Context
-import android.view.ContextMenu
-import android.view.View
 import app.storytel.candidate.com.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 /**
  * Show an alert dialog with error message
- * On neutral button click, dismiss dialog and refresh data
+ * @param context
+ * @param message Display message text
+ * @param buttonMessage Dialog button text
+ * @param onclick Code block for handling on dialog button click
  */
 fun showErrorDialog(context:Context, message: String, buttonMessage: Int, onclick: () -> Unit) {
 
@@ -21,6 +22,8 @@ fun showErrorDialog(context:Context, message: String, buttonMessage: Int, onclic
             dialog.dismiss()
             onclick()
         }
+
+        setCancelable(false)
     }.create()
     dialog.show()
 }
