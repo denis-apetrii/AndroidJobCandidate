@@ -1,8 +1,10 @@
-package app.storytel.candidate.com;
+package app.storytel.candidate.com.ui;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import app.storytel.candidate.com.R;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
