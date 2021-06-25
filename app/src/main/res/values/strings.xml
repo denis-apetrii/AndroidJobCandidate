@@ -9,7 +9,9 @@
     <!-- Error messages -->
     <string name="error_title">Error</string>
     <string name="error_retry_button">Retry</string>
+    <string name="error_ok_button">OK</string>
     <string name="error_request_posts">Error while fetching posts</string>
     <string name="error_request_photos">Error while fetching images</string>
     <string name="error_no_network_connection">No internet connection available</string>
+    <string name="error_request_comments">Error while fetching comments</string>
 </resources>

@@ -1,5 +1,6 @@
 package app.storytel.candidate.com.repository
 
+import app.storytel.candidate.com.model.Comment
 import app.storytel.candidate.com.model.Photo
 import app.storytel.candidate.com.model.Post
 import okhttp3.Interceptor
@@ -83,4 +84,10 @@ interface RetrofitService {
      */
     @GET("photos")
     suspend fun getPhotos(): Response<List<Photo>>
+
+    /**
+     * GET comments for given post id.
+     */
+    @GET("posts/{id}/comments")
+    suspend fun getComments(@Path("id") id: Int): Response<List<Comment>>
 }

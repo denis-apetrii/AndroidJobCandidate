@@ -7,11 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.ScrollingActivity">
 
-    <ProgressBar
-        android:id="@+id/loading_pb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <include android:id="@+id/progress_bar" layout="@layout/progress_bar"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -39,6 +35,6 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_scrolling" />
+    <include android:id="@+id/content_view" layout="@layout/content_scrolling" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import app.storytel.candidate.com.R
 import app.storytel.candidate.com.repository.model.Resource
 import app.storytel.candidate.com.executeSafely
+import app.storytel.candidate.com.model.Comment
 import app.storytel.candidate.com.model.PostAndImages
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -66,17 +67,17 @@ class DataRemoteRepository(
                 }
             )
 
-            if (postsResponse.status == Resource.Status.SUCCESS && photoResponse.status == Resource.Status.SUCCESS){
+            if (postsResponse.status == Resource.Status.SUCCESS && photoResponse.status == Resource.Status.SUCCESS) {
                 mutableLiveData.value = Resource.success(
                     PostAndImages(
                         postsResponse.data ?: mutableListOf(),
                         photoResponse.data ?: mutableListOf()
                     )
                 )
-            }else{
-                if(postsResponse.status == Resource.Status.ERROR){
+            } else {
+                if (postsResponse.status == Resource.Status.ERROR) {
                     mutableLiveData.value = Resource.error(postsResponse.errorMessage!!)
-                }else{
+                } else {
                     mutableLiveData.value = Resource.error(photoResponse.errorMessage!!)
                 }
             }
@@ -87,4 +88,31 @@ class DataRemoteRepository(
 
     }
 
+    override fun fetchComments(postId: Int): LiveData<Resource<List<Comment>>> {
+        val mutableLiveData = MutableLiveData<Resource<List<Comment>>>()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            mutableLiveData.value = executeSafely(
+                request = {
+                    dataService.getComments(postId)
+                },
+                onSuccess = { data ->
+                    Resource.success(data)
+                },
+                onFailed = { errorMessage, data ->
+                    Resource.error(
+                        errorMessage ?: context.getString(R.string.error_request_comments),
+                        data
+                    )
+                },
+                onException = { error ->
+                    Resource.error(
+                        error.localizedMessage ?: context.getString(R.string.error_request_comments)
+                    )
+                }
+            )
+        }
+
+        return mutableLiveData
+    }
 }
