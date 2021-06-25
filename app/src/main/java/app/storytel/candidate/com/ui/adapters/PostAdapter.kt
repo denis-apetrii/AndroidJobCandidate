@@ -1,29 +1,25 @@
 package app.storytel.candidate.com.ui.adapters
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import app.storytel.candidate.com.R
+import app.storytel.candidate.com.databinding.PostItemBinding
+import app.storytel.candidate.com.model.Photo
+import app.storytel.candidate.com.model.Post
 import app.storytel.candidate.com.model.PostAndImages
-import app.storytel.candidate.com.ui.DetailsActivity
 import app.storytel.candidate.com.ui.adapters.PostAdapter.PostViewHolder
 import coil.load
 import java.util.*
 
-class PostAdapter(private val context: Context) :
+class PostAdapter(private val onSelectItem: (Post, Photo) -> Unit) :
     RecyclerView.Adapter<PostViewHolder>() {
 
     private var mData: PostAndImages? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        return PostViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
-        )
+        return PostViewHolder(PostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -37,12 +33,7 @@ class PostAdapter(private val context: Context) :
         holder.image.load(imageUrl)
 
         holder.body.setOnClickListener {
-            context.startActivity(
-                Intent(
-                    context,
-                    DetailsActivity::class.java
-                )
-            )
+            onSelectItem(mData!!.mPosts[position], mData!!.mPhotos[index] )
         }
     }
 
@@ -55,10 +46,12 @@ class PostAdapter(private val context: Context) :
         return if (mData == null) 0 else mData!!.mPosts.size
     }
 
-    inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class PostViewHolder constructor(
+        vm: PostItemBinding
+    ) : RecyclerView.ViewHolder(vm.root) {
 
-        var title: TextView = itemView.findViewById(R.id.title)
-        var body: TextView = itemView.findViewById(R.id.body)
-        var image: ImageView = itemView.findViewById(R.id.image)
+        val title: TextView = vm.title
+        val body: TextView = vm.body
+        val image: ImageView = vm.image
     }
 }
