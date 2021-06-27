@@ -1,4 +1,4 @@
-package app.storytel.candidate.com
+package app.storytel.candidate.com.repository
 
 import android.Manifest
 import android.content.Context

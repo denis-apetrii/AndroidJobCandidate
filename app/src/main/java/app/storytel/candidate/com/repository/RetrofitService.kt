@@ -13,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 
-
 /**
  * Remote service.
  */

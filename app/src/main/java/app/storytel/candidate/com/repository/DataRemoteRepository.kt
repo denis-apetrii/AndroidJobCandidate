@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import app.storytel.candidate.com.R
 import app.storytel.candidate.com.repository.model.Resource
-import app.storytel.candidate.com.executeSafely
 import app.storytel.candidate.com.model.Comment
 import app.storytel.candidate.com.model.PostAndImages
 import kotlinx.coroutines.CoroutineScope

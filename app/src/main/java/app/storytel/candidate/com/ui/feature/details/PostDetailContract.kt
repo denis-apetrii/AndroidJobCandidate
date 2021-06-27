@@ -8,7 +8,7 @@ interface PostDetailContract {
     interface Presenter {
 
         /**
-         * Configure lifecycle owner
+         * Configure lifecycle owner.
          */
         fun attach(activity: FragmentActivity)
 

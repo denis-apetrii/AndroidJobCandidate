@@ -3,6 +3,7 @@ package app.storytel.candidate.com
 import android.app.Application
 import app.storytel.candidate.com.repository.DataRemoteRepository
 import app.storytel.candidate.com.repository.RetrofitService
+import app.storytel.candidate.com.repository.isNetworkAvailable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 

@@ -8,7 +8,7 @@ import app.storytel.candidate.com.model.PostAndImages
 interface DataRepository {
 
     /**
-     * Fetch posts and images and return life data with both data
+     * Fetch posts and images and return life data holding both lists
      */
     fun fetchPostAndPhotos(): LiveData<Resource<PostAndImages>>
 
